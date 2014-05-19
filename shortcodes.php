@@ -212,3 +212,55 @@ function foundation_visibility( $atts , $content = null ) {
 	echo '</span>'."\n";
 }
 add_shortcode( 'visibility', 'foundation_visibility' );
+
+/**
+ * TinyMCE Button
+ */
+add_action('admin_head', 'FS_tinymce_button');
+
+function FS_tinymce_button() {
+		global $typenow;
+		// check user permissions
+		if ( !current_user_can('edit_posts') && !current_user_can('edit_pages') ) {
+		return;
+		}
+		// verify the post type
+		if( ! in_array( $typenow, array( 'post', 'page' ) ) )
+				return;
+	// check if WYSIWYG is enabled
+	if ( get_user_option('rich_editing') == 'true') {
+		add_filter("mce_external_plugins", "FS_add_tinymce_plugin");
+		add_filter('mce_buttons', 'FS_register_my_tc_button');
+	}
+}
+
+function FS_add_tinymce_plugin($plugin_array) {
+		$plugin_array['FS_tc_button'] = plugins_url( 'editor.min.js', __FILE__ );
+		return $plugin_array;
+}
+
+function FS_register_my_tc_button($buttons) {
+	 array_push($buttons, "FS_tc_button");
+	 return $buttons;
+}
+
+/**
+ * Dashicons
+ */
+function FS_tinymce_icon() { ?>
+	<style type="text/css" media="screen">
+		i.mce-i-icon {
+			font: 400 20px/1 dashicons;
+			padding: 0;
+			vertical-align: top;
+			speak: none;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			margin-left: -2px;
+			padding-right: 2px
+		}
+	</style>
+<?php
+
+}
+add_action( 'admin_head', 'FS_tinymce_icon' );
