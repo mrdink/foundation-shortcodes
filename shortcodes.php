@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: Foundation 5 Shortcodes
-Plugin URI: https://wordpress.org/plugins/device-mockups/
+Plugin Name: Foundation Shortcodes
+Plugin URI: https://github.com/mrdink/foundation-5-shortcodes/
 Description: Shortcodes for Foundation 5 by Zurb
 Author: Justin Peacock
 Version: 1.0.0
