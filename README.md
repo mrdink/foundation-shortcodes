@@ -8,17 +8,17 @@
 * Alert
 * Tooltip
 * Progress Bar
+* Labels
+* Flex Video
+* Visibility Classes
 
 #### To Do
 
 Shortcodes
-* Labels
 * Tabs
 * Accordion
 * Reveal Modal
 * Orbit
-* Flex Video
 * Joyride
-* Visibility Classes
 
 TinyMCE Generator

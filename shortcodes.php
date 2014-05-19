@@ -74,7 +74,7 @@ function foundation_button( $atts , $content = null ) {
 	);
 
 	// Output
-	echo '<a href="'. esc_attr( $link ) .'" class="'. esc_attr( $size ) .' '. esc_attr( $type ) .' '. esc_attr( $style ) .' button">'."\n";
+	echo '<a href="button '. esc_attr( $link ) .'" class="'. esc_attr( $size ) .' '. esc_attr( $type ) .' '. esc_attr( $style ) .'">'."\n";
 		echo do_shortcode($content)."\n";
 	echo "</a>"."\n";
 }
@@ -92,9 +92,9 @@ function foundation_panel( $atts , $content = null ) {
 	);
 
 	// Output
-	echo '<div class="'. esc_attr( $type ) .' '. esc_attr( $style ) .' panel">'."\n";
+	echo '<div class="panel '. esc_attr( $type ) .' '. esc_attr( $style ) .'">'."\n";
 		echo do_shortcode($content)."\n";
-	echo '</div>';
+	echo '</div>'."\n";
 }
 add_shortcode( 'panel', 'foundation_panel' );
 
@@ -112,8 +112,8 @@ function foundation_alert( $atts , $content = null ) {
 	// Output
 	echo '<div data-alert class="alert-box '. esc_attr( $type ) .' '. esc_attr( $style ) .'">'."\n";
 		echo do_shortcode($content)."\n";
-		echo '<a href="#" class="close">&times;</a>';
-	echo '</div>';
+		echo '<a href="#" class="close">&times;</a>'."\n";
+	echo '</div>'."\n";
 }
 add_shortcode( 'alert', 'foundation_alert' );
 
@@ -148,8 +148,67 @@ function foundation_progress_bar( $atts ) {
 	);
 
 	// Output
-	echo '<div class="progress '. esc_attr( $span ) .' '. esc_attr( $style ) .' '. esc_attr( $type ) .'">';
-		echo '  <span class="meter" style="width: '. esc_attr( $progress ) .'%"></span>';
-	echo '<div>';
+	echo '<div class="progress '. esc_attr( $span ) .' '. esc_attr( $style ) .' '. esc_attr( $type ) .'">'."\n";
+		echo '<span class="meter" style="width:'. esc_attr( $progress ) .'%"></span>'."\n";
+	echo '</div>'."\n";
 }
 add_shortcode( 'progress-bar', 'foundation_progress_bar' );
+
+// Label
+function foundation_label( $atts , $content = null ) {
+
+	// Attributes
+	extract( shortcode_atts(
+		array(
+			'type' => '',// [round radius]
+			'style' => ''// [success alert secondary]
+		), $atts )
+	);
+
+	// Output
+	echo '<span class="label '. esc_attr( $type ) .' '. esc_attr( $style ) .'">'. do_shortcode( $content ) .'</span>'."\n";
+}
+add_shortcode( 'label', 'foundation_label' );
+
+// Flex Video
+function foundation_flex_video( $atts , $content = null ) {
+
+	// Attributes
+	extract( shortcode_atts(
+		array(
+			'type' => '',
+			'size' => '',
+		), $atts )
+	);
+
+	// Output
+	echo '<div class="flex-video '. esc_attr( $type ) .' '. esc_attr( $size ) .'">'."\n";
+		echo do_shortcode($content)."\n"."\n";
+	echo '</div>'."\n";
+}
+add_shortcode( 'flex-video', 'foundation_flex_video' );
+
+// Visibility Classes
+function foundation_visibility( $atts , $content = null ) {
+
+	// Attributes
+	extract( shortcode_atts(
+		array(
+			'hide' => '',// [small-only medium-up medium-only large-up large-only xlarge-up xlarge-only xxlarge-up]
+			'show' => '',// [small-only medium-up medium-only large-up large-only xlarge-up xlarge-only xxlarge-up]
+		), $atts )
+	);
+
+	// Output
+	?>
+
+	<span class="<?php
+		if ( !empty( $hide ) ) {
+			echo 'hide-for-'. esc_attr( $hide ) .''; }
+		if ( !empty( $show ) ) {
+			echo 'show-for-'. esc_attr( $show ) .''; } ?>">
+	<?php
+		echo do_shortcode($content)."\n";
+	echo '</span>'."\n";
+}
+add_shortcode( 'visibility', 'foundation_visibility' );
