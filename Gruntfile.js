@@ -10,8 +10,26 @@ module.exports = function(grunt) {
     uglify: {
       min: {
         files: {
-          "assets/js/editor.min.js": ["src/js/editor.js"]
+          "editor.min.js": ["src/editor.js"]
         }
+      }
+    },
+
+    // Watch for file changes
+    watch: {
+      options: {
+        livereload: false
+      },
+      grunt: {
+        files: ['Gruntfile.js'],
+        tasks: ['uglify']
+      },
+      markup: {
+        files: ["*.php"],
+      },
+      js: {
+        files: ['src/**/*'],
+        tasks: ['uglify']
       }
     }
 
