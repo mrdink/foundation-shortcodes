@@ -74,7 +74,7 @@ function foundation_button( $atts , $content = null ) {
 	);
 
 	// Output
-	echo '<a href="button '. esc_attr( $link ) .'" class="'. esc_attr( $size ) .' '. esc_attr( $type ) .' '. esc_attr( $style ) .'">'."\n";
+	echo '<a href="'. esc_attr( $link ) .'" class="button '. esc_attr( $size ) .' '. esc_attr( $type ) .' '. esc_attr( $style ) .'">'."\n";
 		echo do_shortcode($content)."\n";
 	echo "</a>"."\n";
 }
@@ -125,12 +125,12 @@ function foundation_tooltip( $atts , $content = null ) {
 		array(
 			'tip' => '',
 			'position' => '',// [tip-top tip-bottom tip-left tip-right]
-			'style' => ''// [radius round]
+			'type' => ''// [radius round]
 		), $atts )
 	);
 
 	// Code
-	echo '<span data-tooltip class="has-tip '. esc_attr( $position ) .'" title="'. esc_attr( $tip ) .'">'. do_shortcode( $content ) .'</span>'."\n";
+	echo '<span data-tooltip class="has-tip '. esc_attr( $position ) .' '. esc_attr( $type ) .'" title="'. esc_attr( $tip ) .'">'. do_shortcode( $content ) .'</span>'."\n";
 }
 add_shortcode( 'tooltip', 'foundation_tooltip' );
 
