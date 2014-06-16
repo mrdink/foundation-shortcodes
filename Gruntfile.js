@@ -6,38 +6,38 @@ module.exports = function(grunt) {
 
 	grunt.initConfig({
 
-    // Uglify
-    uglify: {
-      min: {
-        files: {
-          "editor.min.js": ["src/editor.js"]
-        }
-      }
-    },
+		// Uglify
+		uglify: {
+			min: {
+				files: {
+					"editor.min.js": ["src/editor.js"]
+				}
+			}
+		},
 
-    // Watch for file changes
-    watch: {
-      options: {
-        livereload: false
-      },
-      grunt: {
-        files: ['Gruntfile.js'],
-        tasks: ['uglify']
-      },
-      markup: {
-        files: ["*.php"],
-      },
-      js: {
-        files: ['src/**/*'],
-        tasks: ['uglify']
-      }
-    }
+		// Watch for file changes
+		watch: {
+			options: {
+				livereload: false
+			},
+			grunt: {
+				files: ['Gruntfile.js'],
+				tasks: ['uglify']
+			},
+			markup: {
+				files: ["*.php"],
+			},
+			js: {
+				files: ['src/**/*'],
+				tasks: ['uglify']
+			}
+		}
 
 	});
 
-  grunt.registerTask('default', [
-    'uglify',
-    'watch'
-  ]);
+	grunt.registerTask('default', [
+		'uglify',
+		'watch'
+	]);
 
 };
