@@ -11,6 +11,11 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 /**
+ * Work in Widgets
+ */
+add_filter('widget_text', 'do_shortcode');
+
+/**
  * Grid
  */
 
@@ -18,9 +23,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 function foundation_row( $atts , $content = null ) {
 
 	// Output
+	ob_start();
+
 	echo '<div class="row">'."\n";
 		echo do_shortcode($content)."\n";
 	echo '</div>'."\n";
+
+	return ob_get_clean();
 }
 add_shortcode( 'row', 'foundation_row' );
 
@@ -36,6 +45,8 @@ function foundation_column( $atts , $content = null ) {
 			'align' => ''
 		), $atts )
 	);
+
+	ob_start();
 
 	// Output
 	?>
@@ -53,6 +64,7 @@ function foundation_column( $atts , $content = null ) {
 		echo do_shortcode($content)."\n";
 	echo '</div>'."\n";
 
+	return ob_get_clean();
 }
 add_shortcode( 'column', 'foundation_column' );
 
@@ -73,10 +85,14 @@ function foundation_button( $atts , $content = null ) {
 		), $atts )
 	);
 
+	ob_start();
+
 	// Output
 	echo '<a href="'. esc_attr( $link ) .'" class="button '. esc_attr( $size ) .' '. esc_attr( $type ) .' '. esc_attr( $style ) .'">'."\n";
 		echo do_shortcode($content)."\n";
 	echo "</a>"."\n";
+
+	return ob_get_clean();
 }
 add_shortcode( 'button', 'foundation_button' );
 
@@ -91,10 +107,14 @@ function foundation_panel( $atts , $content = null ) {
 		), $atts )
 	);
 
+	ob_start();
+
 	// Output
 	echo '<div class="panel '. esc_attr( $type ) .' '. esc_attr( $style ) .'">'."\n";
 		echo do_shortcode($content)."\n";
 	echo '</div>'."\n";
+
+	return ob_get_clean();
 }
 add_shortcode( 'panel', 'foundation_panel' );
 
@@ -109,11 +129,15 @@ function foundation_alert( $atts , $content = null ) {
 		), $atts )
 	);
 
+	ob_start();
+
 	// Output
 	echo '<div data-alert class="alert-box '. esc_attr( $type ) .' '. esc_attr( $style ) .'">'."\n";
 		echo do_shortcode($content)."\n";
 		echo '<a href="#" class="close">&times;</a>'."\n";
 	echo '</div>'."\n";
+
+	return ob_get_clean();
 }
 add_shortcode( 'alert', 'foundation_alert' );
 
@@ -129,8 +153,12 @@ function foundation_tooltip( $atts , $content = null ) {
 		), $atts )
 	);
 
+	ob_start();
+
 	// Code
 	echo '<span data-tooltip class="has-tip '. esc_attr( $position ) .' '. esc_attr( $type ) .'" title="'. esc_attr( $tip ) .'">'. do_shortcode( $content ) .'</span>'."\n";
+
+	return ob_get_clean();
 }
 add_shortcode( 'tooltip', 'foundation_tooltip' );
 
@@ -147,10 +175,14 @@ function foundation_progress_bar( $atts ) {
 		), $atts )
 	);
 
+	ob_start();
+
 	// Output
 	echo '<div class="progress '. esc_attr( $span ) .' '. esc_attr( $style ) .' '. esc_attr( $type ) .'">'."\n";
 		echo '<span class="meter" style="width:'. esc_attr( $progress ) .'%"></span>'."\n";
 	echo '</div>'."\n";
+
+	return ob_get_clean();
 }
 add_shortcode( 'progress-bar', 'foundation_progress_bar' );
 
@@ -165,8 +197,12 @@ function foundation_label( $atts , $content = null ) {
 		), $atts )
 	);
 
+	ob_start();
+
 	// Output
 	echo '<span class="label '. esc_attr( $type ) .' '. esc_attr( $style ) .'">'. do_shortcode( $content ) .'</span>'."\n";
+
+	return ob_get_clean();
 }
 add_shortcode( 'label', 'foundation_label' );
 
@@ -181,10 +217,14 @@ function foundation_flex_video( $atts , $content = null ) {
 		), $atts )
 	);
 
+	ob_start();
+
 	// Output
 	echo '<div class="flex-video '. esc_attr( $type ) .' '. esc_attr( $size ) .'">'."\n";
 		echo do_shortcode($content)."\n"."\n";
 	echo '</div>'."\n";
+
+	return ob_get_clean();
 }
 add_shortcode( 'flex-video', 'foundation_flex_video' );
 
@@ -199,6 +239,8 @@ function foundation_visibility( $atts , $content = null ) {
 		), $atts )
 	);
 
+	ob_start();
+
 	// Output
 	?>
 
@@ -210,6 +252,8 @@ function foundation_visibility( $atts , $content = null ) {
 	<?php
 		echo do_shortcode($content)."\n";
 	echo '</span>'."\n";
+
+	return ob_get_clean();
 }
 add_shortcode( 'visibility', 'foundation_visibility' );
 
