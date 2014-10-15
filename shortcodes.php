@@ -279,7 +279,7 @@ function FS_tinymce_button() {
 }
 
 function FS_add_tinymce_plugin($plugin_array) {
-		$plugin_array['FS_tc_button'] = plugins_url( 'editor.min.js', __FILE__ );
+		$plugin_array['FS_tc_button'] = plugins_url( 'assets/js/editor.min.js', __FILE__ );
 		return $plugin_array;
 }
 
