@@ -269,8 +269,8 @@ function FS_tinymce_button() {
 		return;
 		}
 		// verify the post type
-		if( ! in_array( $typenow, array( 'post', 'page' ) ) )
-				return;
+		if( ! in_array( $typenow, array( 'post', 'page', 'slider' ) ) )
+			return;
 	// check if WYSIWYG is enabled
 	if ( get_user_option('rich_editing') == 'true') {
 		add_filter("mce_external_plugins", "FS_add_tinymce_plugin");
@@ -308,3 +308,28 @@ function FS_tinymce_icon() { ?>
 
 }
 add_action( 'admin_head', 'FS_tinymce_icon' );
+
+/**
+ * Add [raw] shortcode
+ */
+// function fs_formatter($content) {
+// 	$new_content = '';
+// 	$pattern_full = '{(\[raw\].*?\[/raw\])}is';
+// 	$pattern_contents = '{\[raw\](.*?)\[/raw\]}is';
+// 	$pieces = preg_split($pattern_full, $content, -1, PREG_SPLIT_DELIM_CAPTURE);
+
+// 	foreach ($pieces as $piece) {
+// 		if (preg_match($pattern_contents, $piece, $matches)) {
+// 			$new_content .= $matches[1];
+// 		} else {
+// 			$new_content .= wptexturize(wpautop($piece));
+// 		}
+// 	}
+
+// 	return $new_content;
+// }
+
+// remove_filter('the_content', 'wpautop');
+// remove_filter('the_content', 'wptexturize');
+
+// add_filter('the_content', 'fs_formatter', 99);
